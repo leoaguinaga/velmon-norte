@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+    CANDLE_TYPE_EVENT,
+    CANDLE_TYPE_STORAGE_KEY,
+} from "../lib/quoteRedirect";
 
 type CandleType = "grande" | "mediana" | "especial";
 
@@ -50,6 +54,26 @@ export default function QuoteForm() {
     function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
         setForm((prev) => ({ ...prev, [key]: value }));
     }
+
+    function applyCandleType(value: string | null | undefined) {
+        if (!value) return;
+        const match = CANDLE_OPTIONS.find((option) => option.value === value);
+        if (match) updateField("candleType", match.value);
+    }
+
+    useEffect(() => {
+        const stored = sessionStorage.getItem(CANDLE_TYPE_STORAGE_KEY);
+        if (stored) {
+            applyCandleType(stored);
+            sessionStorage.removeItem(CANDLE_TYPE_STORAGE_KEY);
+        }
+
+        const handler = (event: Event) => {
+            applyCandleType((event as CustomEvent<string>).detail);
+        };
+        window.addEventListener(CANDLE_TYPE_EVENT, handler);
+        return () => window.removeEventListener(CANDLE_TYPE_EVENT, handler);
+    }, []);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();

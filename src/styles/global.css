@@ -18,7 +18,7 @@ h1 {
 }
 
 html {
-    @apply bg-background
+    @apply bg-background scroll-smooth
 }
 
 .no-scrollbar {
