@@ -1,0 +1,58 @@
+---
+import HeroImage from "../../public/hero-alt-clean.png";
+---
+
+<section class="w-full flex my-10 md:my-15 bg-gray-100">
+    <article
+        class="flex flex-col md:flex-row items-center w-full max-w-7xl mx-auto justify-center gap-8 md:gap-6 lg:gap-12 px-4 py-10 md:py-16"
+    >
+        <div
+            class="flex w-full flex-col items-center gap-2 text-center md:max-w-lg md:items-start md:text-left lg:max-w-xl"
+        >
+            <h1
+                data-animate="fade-up"
+                data-animate-delay="0"
+                class="font-black text-[clamp(1.75rem,1.1rem+3vw,3rem)] leading-tight text-primary"
+            >
+                Velmon, Tradición Chiclayana
+                <br class="hidden md:block" /> Velas que duran más que las demás
+            </h1>
+            <h2
+                data-animate="fade-up"
+                data-animate-delay="0.1"
+                class="text-[clamp(1rem,0.85rem+0.6vw,1.25rem)] font-light max-w-lg"
+            >
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Excepturi ex fugiat sunt voluptatibus itaque sed, totam rerum
+                placeat illo soluta repellat dolorem aliquid enim aperiam!
+            </h2>
+            <div
+                data-animate="fade-up"
+                data-animate-delay="0.2"
+                class="flex flex-wrap justify-center gap-4 mt-1 md:justify-start"
+            >
+                <button
+                    class="bg-primary border border-primary text-white px-3 py-1.5 font-medium rounded-sm hover:bg-primary/80 transition-all"
+                >
+                    Contáctanos
+                </button>
+                <button
+                    class="bg-white border border-white text-primary px-3 py-1.5 font-medium rounded-sm hover:bg-gray-200 transition-all"
+                >
+                    Ver catálogo
+                </button>
+            </div>
+        </div>
+        <div
+            data-animate="zoom-in"
+            data-animate-delay="0.15"
+            class="flex w-full shrink-0 justify-center md:w-auto"
+        >
+            <img
+                src={HeroImage.src}
+                alt="Velas Montenegro"
+                class="h-56 w-auto object-contain sm:h-72 md:h-96 lg:h-[480px]"
+            />
+        </div>
+    </article>
+</section>

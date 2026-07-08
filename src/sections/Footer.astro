@@ -1,0 +1,24 @@
+---
+import LogoHorizontal from "../../public/velmon-horizontal.png";
+---
+
+<section class="w-full flex flex-col py-8 sm:py-10 bg-primary text-white font-medium">
+    <footer class="flex flex-col items-center max-w-7xl mx-auto w-full px-4 gap-4 text-center">
+        <img
+            src={LogoHorizontal.src}
+            alt="Velas Montenegro"
+            class="h-14 sm:h-20 object-contain brightness-0 invert"
+        />
+        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-2 sm:gap-4 text-sm sm:text-base break-all sm:break-normal">
+            <p>gerencia@velasmontenegro.com</p>
+            <span class="hidden sm:inline">•</span>
+            <p>ventas@velasmontenegro.com</p>
+        </div>
+        <div class="flex items-center gap-4">
+            <p class="text-xs sm:text-sm text-white/80">
+                Todos los derechos reservados &copy; {new Date().getFullYear()} |
+                Velmon del norte E.I.R.L.
+            </p>
+        </div>
+    </footer>
+</section>

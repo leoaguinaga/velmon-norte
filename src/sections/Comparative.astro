@@ -1,0 +1,112 @@
+---
+import EmpaqueMediano from "../../public/empaques/mediana.webp";
+import EmpaqueGrande from "../../public/empaques/grande.webp";
+import EmpaqueEspecial from "../../public/empaques/especial.webp";
+---
+
+<section class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4">
+    <h1 data-animate="fade-up" class="text-2xl md:text-4xl font-black text-primary">
+        Empaques para cada necesidad
+    </h1>
+    <div class="flex h-full w-full flex-col gap-12 md:gap-16">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
+            <div
+                data-animate="fade-right"
+                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-purple-300 md:order-none"
+            >
+                <img
+                    src={EmpaqueEspecial.src}
+                    class="w-full"
+                    alt="Vela especial de Velas Montenegro"
+                />
+            </div>
+            <div
+                data-animate="fade-left"
+                data-animate-delay="0.1"
+                class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
+            >
+                <h2 class="text-2xl md:text-3xl font-bold">
+                    La Especial, para ocasiones que lo merecen
+                </h2>
+                <p class="text-lg">
+                    Pensada para procesiones, velaciones y ceremonias
+                    especiales: mayor tamaño y mayor tiempo de combustión para
+                    acompañar los momentos más importantes sin apagarse antes
+                    de tiempo.
+                </p>
+                <button
+                    class="mt-2 w-fit self-center px-5 py-2 font-medium text-lg bg-primary text-white rounded-sm md:self-start"
+                    >Cotizar</button
+                >
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
+            <div
+                data-animate="fade-right"
+                class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
+            >
+                <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-center md:justify-start">
+                    <span
+                        class="order-1 shrink-0 rounded-full bg-primary px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:order-2"
+                        >Más elegida</span
+                    >
+                    <h2 class="order-2 text-2xl md:text-3xl font-bold sm:order-1">
+                        La Mediana, el equilibrio perfecto para el día a día
+                    </h2>
+                </div>
+                <p class="text-lg">
+                    A diferencia de la Especial, pensada para ocasiones
+                    puntuales, la Mediana ofrece una duración igual de
+                    confiable a un precio más accesible: ideal para el uso
+                    diario en el hogar, negocios y altares.
+                </p>
+                <button
+                    class="mt-2 w-fit self-center px-5 py-2 font-medium text-lg bg-primary text-white rounded-sm md:self-start"
+                    >Cotizar</button
+                >
+            </div>
+            <div
+                data-animate="fade-left"
+                data-animate-delay="0.1"
+                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-red-300 md:order-none"
+            >
+                <img
+                    src={EmpaqueMediano.src}
+                    class="w-full"
+                    alt="Vela mediana de Velas Montenegro"
+                />
+            </div>
+        </div>
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
+            <div
+                data-animate="fade-right"
+                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-blue-300 md:order-none"
+            >
+                <img
+                    src={EmpaqueGrande.src}
+                    class="w-full"
+                    alt="Vela grande de Velas Montenegro"
+                />
+            </div>
+            <div
+                data-animate="fade-left"
+                data-animate-delay="0.1"
+                class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
+            >
+                <h2 class="text-2xl md:text-3xl font-bold">
+                    La Grande, para alumbrar espacios más amplios
+                </h2>
+                <p class="text-lg">
+                    La mejor opción cuando se necesita mayor volumen: iglesias,
+                    negocios y eventos que requieren varias velas encendidas
+                    por varias horas seguidas, sin perder calidad ni
+                    consistencia en la cera.
+                </p>
+                <button
+                    class="mt-2 w-fit self-center px-5 py-2 font-medium text-lg bg-primary text-white rounded-sm md:self-start"
+                    >Cotizar</button
+                >
+            </div>
+        </div>
+    </div>
+</section>

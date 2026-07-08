@@ -1,0 +1,101 @@
+---
+import CruzMotupe from "../../public/usecase/cruz-motupe.webp";
+import Velaciones from "../../public/usecase/velaciones.webp";
+import Procesion from "../../public/usecase/procesion.webp";
+import Alumbrado from "../../public/usecase/alumbrado.webp";
+import Cena from "../../public/usecase/cena.webp";
+import Bautizo from "../../public/usecase/bautizo.webp";
+import Santo from "../../public/usecase/santo.webp";
+
+const images = [
+    {
+        src: CruzMotupe.src,
+        alt: "Altar con velas encendidas en honor a la Santa Cruz de Motupe",
+        class: "md:col-span-2 md:row-span-4",
+    },
+    {
+        src: Santo.src,
+        alt: "Santo",
+        class: "md:col-span-2 md:row-span-2 md:col-start-3",
+    },
+    {
+        src: Alumbrado.src,
+        alt: "Candelabro con velas encendidas en una iglesia",
+        class: "md:col-span-2 md:row-span-2 md:col-start-5",
+    },
+    {
+        src: Cena.src,
+        alt: "Mesa servida con candelabro de velas encendidas",
+        class: "md:row-span-2 md:col-start-3 md:row-start-3",
+    },
+    {
+        src: Procesion.src,
+        alt: "Coro participando en una procesión nocturna con velas",
+        class: "md:col-span-2 md:row-span-2 md:col-start-4 md:row-start-3",
+    },
+    {
+        src: Bautizo.src,
+        alt: "Niños sosteniendo velas encendidas durante una ceremonia",
+        class: "md:row-span-2 md:col-start-6 md:row-start-3",
+    },
+];
+---
+
+<section class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4">
+    <h1 data-animate="fade-up" class="text-2xl md:text-4xl font-black text-primary text-center">
+        Acompañándote cuando más nos necesitas
+    </h1>
+
+    <!-- Mobile: swipeable carousel -->
+    <div
+        class="md:hidden -mx-4 flex snap-x snap-mandatory overflow-x-auto no-scrollbar gap-4 px-4 pb-2"
+    >
+        {
+            images.map((image, index) => (
+                <div
+                    data-animate="zoom-in"
+                    data-animate-delay={index * 0.08}
+                    class="relative aspect-4/5 w-[80%] shrink-0 snap-center overflow-hidden"
+                >
+                    <img
+                        src={image.src}
+                        alt={image.alt}
+                        class="absolute inset-0 h-full w-full object-cover"
+                    />
+                </div>
+            ))
+        }
+    </div>
+
+    <!-- Desktop: bento grid -->
+    <div
+        class="hidden md:grid grid-cols-6 grid-rows-4 gap-4 aspect-16/9 lg:aspect-2/1"
+    >
+        {
+            images.map((image, index) => (
+                <div
+                    data-animate="zoom-in"
+                    data-animate-delay={index * 0.08}
+                    class={`relative overflow-hidden ${image.class}`}
+                >
+                    <img
+                        src={image.src}
+                        alt={image.alt}
+                        class="absolute inset-0 h-full w-full object-cover"
+                    />
+                </div>
+            ))
+        }
+    </div>
+
+    <div data-animate="fade-up" class="flex flex-col gap-4 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-black text-primary text-center">
+            ¿Quieres probar nuestro productos?
+        </h2>
+        <button
+            class="bg-primary text-white px-3 py-1.5 font-medium rounded-sm hover:bg-primary/80 transition-all w-fit mx-auto"
+        >
+            Solicita una cotización
+        </button>
+    </div>
+</section>

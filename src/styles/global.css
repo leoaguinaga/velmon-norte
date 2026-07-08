@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #020b34;
+    --color-background: #fcfafe;
+}
+
+:root {
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+strong {
+    @apply font-semibold
+}
+
+h1 {
+    @apply text-primary
+}
+
+html {
+    @apply bg-background
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

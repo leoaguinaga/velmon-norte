@@ -1,0 +1,112 @@
+---
+interface Props {
+    question: string;
+    answer: string;
+    index?: number;
+}
+
+const { question, answer, index = 0 } = Astro.props;
+---
+
+<details
+    data-animate="fade-up"
+    data-animate-delay={index * 0.08}
+    class="faq-item group w-full border-b border-primary/30 bg-white overflow-hidden"
+    itemscope
+    itemprop="mainEntity"
+    itemtype="https://schema.org/Question"
+>
+    <summary
+        class="flex w-full list-none items-center justify-between gap-4 px-3 py-3 cursor-pointer font-medium text-primary marker:content-none [&::-webkit-details-marker]:hidden"
+    >
+        <p itemprop="name">{question}</p>
+        <span
+            class="shrink-0 text-xl leading-none transition-transform duration-200 group-open:rotate-45"
+            aria-hidden="true"
+        >
+            +
+        </span>
+    </summary>
+    <div
+        class="faq-content"
+        itemscope
+        itemprop="acceptedAnswer"
+        itemtype="https://schema.org/Answer"
+    >
+        <p itemprop="text" class="px-3 pb-4 font-light text-primary/80">
+            {answer}
+        </p>
+    </div>
+</details>
+
+<script>
+    // Progressive enhancement: <details>/<summary> works without JS.
+    // This only smooths the open/close height transition via WAAPI.
+    function setupFaqItem(el: HTMLDetailsElement) {
+        const summary = el.querySelector("summary");
+        const content = el.querySelector<HTMLElement>(".faq-content");
+        if (!summary || !content) return;
+
+        let animation: Animation | null = null;
+        let isClosing = false;
+        let isExpanding = false;
+
+        summary.addEventListener("click", (event) => {
+            event.preventDefault();
+            el.style.overflow = "hidden";
+
+            if (isClosing || !el.open) {
+                openItem();
+            } else if (isExpanding || el.open) {
+                shrink();
+            }
+        });
+
+        function shrink() {
+            isClosing = true;
+            const startHeight = `${el.offsetHeight}px`;
+            const endHeight = `${summary!.offsetHeight}px`;
+
+            animation?.cancel();
+            animation = el.animate(
+                { height: [startHeight, endHeight] },
+                { duration: 250, easing: "ease-out" },
+            );
+            animation.onfinish = () => onAnimationFinish(false);
+            animation.oncancel = () => (isClosing = false);
+        }
+
+        function openItem() {
+            el.style.height = `${el.offsetHeight}px`;
+            el.open = true;
+            requestAnimationFrame(expand);
+        }
+
+        function expand() {
+            isExpanding = true;
+            const startHeight = `${el.offsetHeight}px`;
+            const endHeight = `${summary!.offsetHeight + content!.offsetHeight}px`;
+
+            animation?.cancel();
+            animation = el.animate(
+                { height: [startHeight, endHeight] },
+                { duration: 250, easing: "ease-out" },
+            );
+            animation.onfinish = () => onAnimationFinish(true);
+            animation.oncancel = () => (isExpanding = false);
+        }
+
+        function onAnimationFinish(open: boolean) {
+            el.open = open;
+            animation = null;
+            isClosing = false;
+            isExpanding = false;
+            el.style.height = "";
+            el.style.overflow = "";
+        }
+    }
+
+    document
+        .querySelectorAll<HTMLDetailsElement>("details.faq-item")
+        .forEach(setupFaqItem);
+</script>
