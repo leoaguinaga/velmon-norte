@@ -2,15 +2,80 @@
 import "../styles/global.css";
 import Navbar from "../sections/Navbar";
 import Footer from "../sections/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+const {
+	title = "Velas Montenegro | Fábrica de Velas de Parafina en Chiclayo",
+	description = "Fabricantes de velas de parafina en Chiclayo con más de 20 años de experiencia. Distribuimos al por mayor a bodegas, iglesias y negocios en Lambayeque, Piura, Trujillo y todo el norte del Perú.",
+	image = "/og.png",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+
+const organizationJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Store",
+	name: "Velas Montenegro",
+	alternateName: "Velmon del Norte E.I.R.L.",
+	url: Astro.site?.toString(),
+	logo: new URL("/velmon-vertical.png", Astro.site).toString(),
+	image: ogImageURL.toString(),
+	description,
+	email: "ventas@velasmontenegro.com",
+	address: {
+		"@type": "PostalAddress",
+		addressLocality: "Chiclayo",
+		addressRegion: "Lambayeque",
+		addressCountry: "PE",
+	},
+	areaServed: ["Lambayeque", "Piura", "Trujillo", "Perú"],
+};
 ---
 
 <!doctype html>
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
 		<link rel="icon" type="image/png" href="/favicon.png" />
-		<title>Velas Montenegro: Duran más que las demás</title>
+		<link rel="apple-touch-icon" href="/velmon-vertical.png" />
+		<link rel="canonical" href={canonicalURL} />
+		<meta name="theme-color" content="#020b34" />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:site_name" content="Velas Montenegro" />
+		<meta property="og:locale" content="es_PE" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImageURL} />
+		<meta property="og:image:width" content="3048" />
+		<meta property="og:image:height" content="1470" />
+		<meta property="og:image:alt" content="Velas Montenegro" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageURL} />
+
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(organizationJsonLd)}
+		/>
 	</head>
 	<body class="min-h-screen">
 		<Navbar />
@@ -18,6 +83,7 @@ import Footer from "../sections/Footer.astro";
 			<slot />
 		</main>
 		<Footer />
+		<Analytics />
 	</body>
 </html>
 
