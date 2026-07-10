@@ -4,19 +4,62 @@ import EmpaqueGrande from "../../public/empaques/grande.webp";
 import EmpaqueEspecial from "../../public/empaques/especial.webp";
 ---
 
-<section id="presentaciones" class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20">
-    <h1 data-animate="fade-up" class="text-2xl md:text-4xl font-black text-primary">
+<section
+    id="presentaciones"
+    class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+>
+    <h1 class="text-2xl md:text-4xl font-black text-primary">
         Empaques para cada necesidad
     </h1>
     <div class="flex h-full w-full flex-col gap-12 md:gap-16">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
             <div
                 data-animate="fade-right"
-                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-purple-300 md:order-none"
+                class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-purple-300 md:order-none md:p-12"
             >
+                <div
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-purple-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                >
+                </div>
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute top-3 left-3 z-1 h-16 w-12 -rotate-12 opacity-70 transition-transform duration-500 group-hover:-rotate-6 md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute bottom-3 right-3 z-1 h-16 w-12 rotate-[160deg] opacity-70 transition-transform duration-500 group-hover:rotate-[166deg] md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <div
+                    class="absolute bottom-6 left-1/2 z-2 h-3 w-2/5 -translate-x-1/2 rounded-full bg-black/20 blur-md md:bottom-8 md:h-4"
+                >
+                </div>
                 <img
                     src={EmpaqueEspecial.src}
-                    class="w-full"
+                    class="relative z-3 w-full rounded-md transition-transform duration-300 group-hover:scale-[1.03]"
                     alt="Vela especial de Velas Montenegro"
                 />
             </div>
@@ -31,8 +74,8 @@ import EmpaqueEspecial from "../../public/empaques/especial.webp";
                 <p class="text-lg">
                     Pensada para procesiones, velaciones y ceremonias
                     especiales: mayor tamaño y mayor tiempo de combustión para
-                    acompañar los momentos más importantes sin apagarse antes
-                    de tiempo.
+                    acompañar los momentos más importantes sin apagarse antes de
+                    tiempo.
                 </p>
                 <button
                     data-cotizar="especial"
@@ -46,23 +89,27 @@ import EmpaqueEspecial from "../../public/empaques/especial.webp";
                 data-animate="fade-right"
                 class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
             >
-                <div class="flex flex-col items-center gap-2 sm:flex-row sm:justify-center md:justify-start">
+                <div
+                    class="flex flex-col items-center gap-2 sm:flex-row sm:justify-center md:justify-start"
+                >
                     <span
                         class="order-1 shrink-0 rounded-full bg-primary px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white sm:order-2"
                         >Más elegida</span
                     >
-                    <h2 class="order-2 text-2xl md:text-3xl font-bold sm:order-1">
-                        La Mediana, el equilibrio perfecto para el día a día
+                    <h2
+                        class="order-2 text-2xl md:text-3xl font-bold sm:order-1"
+                    >
+                        La Grande, para alumbrar espacios más amplios
                     </h2>
                 </div>
                 <p class="text-lg">
-                    A diferencia de la Especial, pensada para ocasiones
-                    puntuales, la Mediana ofrece una duración igual de
-                    confiable a un precio más accesible: ideal para el uso
-                    diario en el hogar, negocios y altares.
+                    La mejor opción cuando se necesita mayor volumen: iglesias,
+                    negocios y eventos que requieren varias velas encendidas por
+                    varias horas seguidas, sin perder calidad ni consistencia en
+                    la cera.
                 </p>
                 <button
-                    data-cotizar="mediana"
+                    data-cotizar="grande"
                     class="mt-2 w-fit self-center px-5 py-2 font-medium text-lg bg-primary text-white rounded-sm md:self-start"
                     >Cotizar</button
                 >
@@ -70,24 +117,104 @@ import EmpaqueEspecial from "../../public/empaques/especial.webp";
             <div
                 data-animate="fade-left"
                 data-animate-delay="0.1"
-                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-red-300 md:order-none"
+                class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-blue-300 ring-2 ring-primary/25 transition-all duration-300 hover:ring-primary/50 md:order-none md:p-12"
             >
+                <div
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-blue-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                >
+                </div>
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute top-3 left-3 z-1 h-16 w-12 -rotate-12 opacity-70 transition-transform duration-500 group-hover:-rotate-6 md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute bottom-3 right-3 z-1 h-16 w-12 rotate-[160deg] opacity-70 transition-transform duration-500 group-hover:rotate-[166deg] md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <div
+                    class="absolute bottom-6 left-1/2 z-2 h-3 w-2/5 -translate-x-1/2 rounded-full bg-black/20 blur-md md:bottom-8 md:h-4"
+                >
+                </div>
                 <img
-                    src={EmpaqueMediano.src}
-                    class="w-full"
-                    alt="Vela mediana de Velas Montenegro"
+                    src={EmpaqueGrande.src}
+                    class="relative z-3 w-full rounded-md transition-transform duration-300 group-hover:scale-[1.03]"
+                    alt="Vela grande de Velas Montenegro"
                 />
             </div>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
             <div
                 data-animate="fade-right"
-                class="order-1 flex items-center justify-center overflow-hidden rounded-sm bg-blue-300 md:order-none"
+                class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-red-300 md:order-none md:p-12"
             >
+                <div
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-red-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                >
+                </div>
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute top-3 left-3 z-1 h-16 w-12 -rotate-12 opacity-70 transition-transform duration-500 group-hover:-rotate-6 md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <svg
+                    viewBox="0 0 100 140"
+                    class="absolute bottom-3 right-3 z-1 h-16 w-12 rotate-[160deg] opacity-70 transition-transform duration-500 group-hover:rotate-[166deg] md:h-20 md:w-15"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    ><path
+                        d="M50 12 C32 36 22 60 28 82 C32 98 42 110 50 122 C58 110 68 98 72 82 C78 60 68 36 50 12 Z"
+                    ></path><path
+                        d="M50 55 C41 70 39 88 50 102 C61 88 59 70 50 55 Z"
+                        stroke-width="2"></path><circle
+                        cx="70"
+                        cy="25"
+                        r="4"
+                        fill="currentColor"></circle></svg
+                >
+                <div
+                    class="absolute bottom-6 left-1/2 z-2 h-3 w-2/5 -translate-x-1/2 rounded-full bg-black/20 blur-md md:bottom-8 md:h-4"
+                >
+                </div>
                 <img
-                    src={EmpaqueGrande.src}
-                    class="w-full"
-                    alt="Vela grande de Velas Montenegro"
+                    src={EmpaqueMediano.src}
+                    class="relative z-3 w-full rounded-md transition-transform duration-300 group-hover:scale-[1.03]"
+                    alt="Vela mediana de Velas Montenegro"
                 />
             </div>
             <div
@@ -96,16 +223,16 @@ import EmpaqueEspecial from "../../public/empaques/especial.webp";
                 class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
             >
                 <h2 class="text-2xl md:text-3xl font-bold">
-                    La Grande, para alumbrar espacios más amplios
+                    La Mediana, el equilibrio perfecto para el día a día
                 </h2>
                 <p class="text-lg">
-                    La mejor opción cuando se necesita mayor volumen: iglesias,
-                    negocios y eventos que requieren varias velas encendidas
-                    por varias horas seguidas, sin perder calidad ni
-                    consistencia en la cera.
+                    A diferencia de la Especial, pensada para ocasiones
+                    puntuales, la Mediana ofrece una duración igual de confiable
+                    a un precio más accesible: ideal para el uso diario en el
+                    hogar, negocios y altares.
                 </p>
                 <button
-                    data-cotizar="grande"
+                    data-cotizar="mediana"
                     class="mt-2 w-fit self-center px-5 py-2 font-medium text-lg bg-primary text-white rounded-sm md:self-start"
                     >Cotizar</button
                 >

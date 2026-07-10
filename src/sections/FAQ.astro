@@ -4,38 +4,31 @@ import FaqItem from "../components/FaqItem.astro";
 const faqs = [
     {
         question: "¿Desde cuándo distribuyen velas Montenegro?",
-        answer:
-            "Desde hace más de 20 años fabricamos y distribuimos velas de parafina en Chiclayo, siendo reconocidos como una marca líder en el norte del Perú.",
+        answer: "Desde hace más de 20 años fabricamos y distribuimos velas de parafina en Chiclayo, siendo reconocidos como una marca líder en el norte del Perú.",
     },
     {
         question: "¿A dónde distribuyen sus velas?",
-        answer:
-            "Distribuimos a nivel nacional, con mayor presencia en Chiclayo, Lambayeque, Piura, Trujillo y el resto del norte del Perú. También coordinamos envíos a Lima y otras regiones del país.",
+        answer: "Distribuimos a nivel nacional, con mayor presencia en Chiclayo, Lambayeque, Piura, Trujillo y el resto del norte del Perú. También coordinamos envíos a Lima y otras regiones del país.",
     },
     {
         question: "¿Cuentan con reparto a domicilio?",
-        answer:
-            "Sí, contamos con reparto a domicilio dentro de Chiclayo y coordinamos envíos mediante agencias de transporte para otras ciudades del Perú.",
+        answer: "Sí, contamos con reparto a domicilio dentro de Chiclayo y coordinamos envíos mediante agencias de transporte para otras ciudades del Perú.",
     },
     {
         question: "¿Los envíos tienen costo adicional?",
-        answer:
-            "El costo de envío depende del destino y la cantidad solicitada. Las compras al por mayor dentro de Chiclayo incluyen reparto gratuito; los envíos a provincia se cotizan según la agencia de transporte.",
+        answer: "El costo de envío depende del destino y la cantidad solicitada. Las compras al por mayor dentro de Chiclayo incluyen reparto gratuito; los envíos a provincia se cotizan según la agencia de transporte.",
     },
     {
         question: "¿Qué tipo de cera utilizan en sus velas?",
-        answer:
-            "Elaboramos nuestras velas con parafina de alta calidad, lo que garantiza una combustión uniforme y una mayor duración frente a velas de menor calidad.",
+        answer: "Elaboramos nuestras velas con parafina de alta calidad, lo que garantiza una combustión uniforme y una mayor duración frente a velas de menor calidad.",
     },
     {
         question: "¿Brindan precio de mayorista?",
-        answer:
-            "Sí, ofrecemos precios especiales al por mayor para bodegas, distribuidores, iglesias y negocios que revenden nuestras velas. Solicita tu cotización según la cantidad que necesites.",
+        answer: "Sí, ofrecemos precios especiales al por mayor para bodegas, distribuidores, iglesias y negocios que revenden nuestras velas. Solicita tu cotización según la cantidad que necesites.",
     },
     {
         question: "¿Cuál es el tiempo de entrega?",
-        answer:
-            "El tiempo de entrega en Chiclayo es de 24 a 48 horas. Para envíos a otras ciudades del Perú, el tiempo varía entre 2 y 5 días hábiles según la agencia de transporte.",
+        answer: "El tiempo de entrega en Chiclayo es de 24 a 48 horas. Para envíos a otras ciudades del Perú, el tiempo varía entre 2 y 5 días hábiles según la agencia de transporte.",
     },
 ];
 
@@ -53,10 +46,7 @@ const faqJsonLd = {
 };
 ---
 
-<script
-    type="application/ld+json"
-    set:html={JSON.stringify(faqJsonLd)}
-/>
+<script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 
 <section
     id="dudas"
@@ -65,17 +55,17 @@ const faqJsonLd = {
     itemtype="https://schema.org/FAQPage"
 >
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div data-animate="fade-right" class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3">
             <h1 class="text-4xl font-black text-primary">
                 Preguntas Frecuentes
             </h1>
-            <p>
+            <p data-animate="fade-right">
                 Resolvemos las dudas más frecuentes sobre nuestras velas de
-                parafina, zonas de distribución, tiempos de entrega y precios
-                al por mayor. Si no encuentras la respuesta que buscas,
-                escríbenos y con gusto te ayudamos.
+                parafina, zonas de distribución, tiempos de entrega y precios al
+                por mayor. Si no encuentras la respuesta que buscas, escríbenos
+                y con gusto te ayudamos.
             </p>
-            <h3 class="font-medium text-lg">
+            <h3 class="font-medium text-lg" data-animate="fade-right">
                 Si tienes alguna duda o consulta, envíanos un correo a:{" "}
                 <a
                     href="mailto:ventas@velasmontenegro.com"
@@ -87,13 +77,15 @@ const faqJsonLd = {
         </div>
         <div class="md:col-span-2 font-medium">
             <div class="flex flex-col gap-2">
-                {faqs.map((faq, index) => (
-                    <FaqItem
-                        question={faq.question}
-                        answer={faq.answer}
-                        index={index}
-                    />
-                ))}
+                {
+                    faqs.map((faq, index) => (
+                        <FaqItem
+                            question={faq.question}
+                            answer={faq.answer}
+                            index={index}
+                        />
+                    ))
+                }
             </div>
         </div>
     </div>

@@ -3,31 +3,38 @@ import EtiquetaMediana from "../../public/etiquetas/mediana.webp";
 import EtiquetaGrande from "../../public/etiquetas/grande.webp";
 import EtiquetaEspecial from "../../public/etiquetas/especial.webp";
 
+import VelaMedianaAlt from "../../public/velas/v2-medianas.png";
+import VelaGrandeAlt from "../../public/velas/velas-grandes.png";
+import VelaEspecialAlt from "../../public/velas/velas-especiales.png";
+
 import VelaMediana from "../../public/velas/medianas.webp";
 import VelaGrande from "../../public/velas/grandes.webp";
 import VelaEspecial from "../../public/velas/especiales.webp";
 
 const products = [
     {
-        candle: VelaMediana.src,
+        candle: VelaMedianaAlt.src,
         label: EtiquetaMediana.src,
-        cantidad: "6 unidades por paquete",
+        typeLabel: "Mediana",
+        cantidad: "10 unidades por paquete",
         empaque: "14 cm x 7,5 cm",
         velaSola: "12 cm",
         type: "mediana",
     },
     {
-        candle: VelaGrande.src,
+        candle: VelaGrandeAlt.src,
         label: EtiquetaGrande.src,
-        cantidad: "6 unidades por paquete",
+        typeLabel: "Grande",
+        cantidad: "10 unidades por paquete",
         empaque: "15 cm x 9 cm",
         velaSola: "13,5 cm",
         type: "grande",
     },
     {
-        candle: VelaEspecial.src,
+        candle: VelaEspecialAlt.src,
         label: EtiquetaEspecial.src,
-        cantidad: "6 unidades por paquete",
+        typeLabel: "Especial",
+        cantidad: "10 unidades por paquete",
         empaque: "15,3 cm x 10,1 cm",
         velaSola: "14,3 cm",
         type: "especial",
@@ -35,8 +42,11 @@ const products = [
 ];
 ---
 
-<section id="catalogo" class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20">
-    <h1 data-animate="fade-up" class="text-2xl md:text-4xl font-black text-primary">
+<section
+    id="catalogo"
+    class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+>
+    <h1 class="text-2xl md:text-4xl font-black text-primary">
         Catálogo reconocido en el Norte
     </h1>
 
@@ -92,15 +102,18 @@ const products = [
                     data-animate-delay={index * 0.15}
                     class="flex w-full flex-col border border-black/30"
                 >
-                    <div class="flex min-h-70 w-full items-center bg-white justify-center">
+                    <div class="flex h-95 w-full items-center justify-end bg-background">
                         <img
                             src={product.candle}
                             alt=""
-                            class="object-contain"
+                            class="object-contain scale-90 transition-transform duration-300 hover:scale-92"
                         />
                     </div>
-                    <img src={product.label} alt="" class="w-full" />
-                    <div class="w-full p-4 bg-white">
+                    {/* <img src={product.label} alt="" class="w-full" /> */}
+                    <div class="w-full p-4 bg-white mt-auto">
+                        <h2 class="bg-white text-xl font-black text-primary mb-2 text-left">
+                            {product.typeLabel}
+                        </h2>
                         <ul>
                             <strong>Cantidad:</strong> {product.cantidad}
                         </ul>
