@@ -11,13 +11,13 @@ const { question, answer, index = 0 } = Astro.props;
 <details
     data-animate="fade-up"
     data-animate-delay={index * 0.08}
-    class="faq-item group w-full border-b border-primary/30 bg-white overflow-hidden"
+    class="faq-item group w-full border-b border-white/70 bg-primary overflow-hidden"
     itemscope
     itemprop="mainEntity"
     itemtype="https://schema.org/Question"
 >
     <summary
-        class="flex w-full list-none items-center justify-between gap-4 px-3 py-3 cursor-pointer font-medium text-primary marker:content-none [&::-webkit-details-marker]:hidden"
+        class="flex w-full list-none items-center justify-between gap-4 px-3 py-3 cursor-pointer font-medium text-white marker:content-none [&::-webkit-details-marker]:hidden"
     >
         <p itemprop="name">{question}</p>
         <span
@@ -33,7 +33,7 @@ const { question, answer, index = 0 } = Astro.props;
         itemprop="acceptedAnswer"
         itemtype="https://schema.org/Answer"
     >
-        <p itemprop="text" class="px-3 pb-4 font-light text-primary/80">
+        <p itemprop="text" class="px-3 pb-4 font-light text-white/80">
             {answer}
         </p>
     </div>

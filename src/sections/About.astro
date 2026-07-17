@@ -1,14 +1,40 @@
 ---
+import About from "../../public/about.jpeg";
+import Feria1 from "../../public/about/WhatsApp Image 2026-07-16 at 15.30.26.jpeg";
+import Feria2 from "../../public/about/WhatsApp Image 2026-07-16 at 15.30.27.jpeg";
+import Feria3 from "../../public/about/WhatsApp Image 2026-07-16 at 15.30.28.jpeg";
+import Feria4 from "../../public/about/WhatsApp Image 2026-07-16 at 15.30.30.jpeg";
+import Feria5 from "../../public/about/WhatsApp Image 2026-07-16 at 15.30.31.jpeg";
 
+const fairs = [
+    {
+        src: Feria1.src,
+        caption: "PARTICIPACIÓN MACRORRUEDA DE LAS AMÉRICAS COLOMBIA 2023",
+    },
+    { src: Feria2.src, caption: "PARTICIPACIÓN EXPOCOMER 2023" },
+    {
+        src: Feria3.src,
+        caption:
+            "PARTICIPACIÓN EN LA MACRORRUEDA DE LAS AMÉRICAS COLOMBIA 2026",
+    },
+    {
+        src: Feria4.src,
+        caption: "PARTICIPACIÓN DE EXPOCOMER-EXPOLOGPISTICA Y EXPOTECH 2026",
+    },
+    // { src: Feria5.src, caption: "Nombre de la feria" },
+];
 ---
 
-<section id="nosotros" class="w-full flex my-12 md:my-20 scroll-my-20">
+<section
+    id="nosotros"
+    class="w-full flex flex-col my-18 md:my-25 md:mb-20 scroll-my-20"
+>
     <article
         class="flex flex-col lg:flex-row lg:items-start justify-between max-w-7xl mx-auto gap-8 lg:gap-12 px-4"
     >
         <img
             data-animate="fade-right"
-            src=""
+            src={About.src}
             alt=""
             class="w-full max-w-100 mx-auto object-contain sm:max-w-125 lg:max-w-150 my-auto lg:mx-0 lg:shrink-0"
         />
@@ -16,8 +42,7 @@
             <h2
                 class="text-[clamp(1.75rem,1.2rem+2vw,2.25rem)] font-black text-primary text-center lg:text-left"
             >
-                Somos fabricantes con más de 20 años siendo lideres en el
-                mercado Chiclayano
+                Más de 20 años siendo lideres en el mercado Chiclayano
             </h2>
             <p
                 data-animate="fade-up"
@@ -73,4 +98,39 @@
             </div>
         </div>
     </article>
+
+    <div
+        class="w-full max-w-7xl mx-auto px-4 mt-10 md:mt-10 flex flex-col gap-6"
+    >
+        <h3
+            data-animate="fade-up"
+            class="text-2xl md:text-3xl font-black text-primary"
+        >
+            Presentes en ferias internacionales
+        </h3>
+        <div
+            class="flex gap-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-2 -mx-4 px-4 md:mx-0 md:px-0 overflow-y-hidden"
+        >
+            {
+                fairs.map((fair, index) => (
+                    <div
+                        data-animate="fade-up"
+                        data-animate-delay={index * 0.08}
+                        class="flex flex-col gap-2 w-[200px] md:w-[400px] shrink-0 snap-start"
+                    >
+                        <div class="aspect-4/5 w-full overflow-hidden border-t-3 border-primary">
+                            <img
+                                src={fair.src}
+                                alt={fair.caption}
+                                class="w-full h-full object-cover"
+                            />
+                        </div>
+                        <p class="text-sm font-bold text-primary/70 italic">
+                            {fair.caption}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
 </section>

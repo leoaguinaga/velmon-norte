@@ -1,0 +1,75 @@
+---
+import Peru from "../../public/peru.png";
+---
+
+<div class="flex w-full h-full bg-white">
+    <section
+        id="envios"
+        class="w-full flex mt-15 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+    >
+        <h1 class="text-2xl md:text-4xl font-black text-primary text-center">
+            Realizamos envíos a todo el Perú
+        </h1>
+        <article class="grid grid-cols-1 items-center md:gap-10 md:grid-cols-2">
+            <div
+                data-animate="fade-right"
+                class="group relative flex items-center justify-center overflow-hidden rounded-sm p-8 text-blue-300 md:p-12 md:pb-10"
+            >
+                <img
+                    src={Peru.src}
+                    alt="Mapa de cobertura de envíos a nivel nacional"
+                    class="relative z-10 w-full max-w-70 object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:max-w-80 mb-10"
+                />
+            </div>
+            <div class="w-full min-w-0 flex flex-col gap-5">
+                <p data-animate="fade-up" class="font-light text-lg">
+                    Coordinamos el envío de tus velas a cualquier ciudad del
+                    país a través de las principales agencias de transporte,
+                    para que puedas recibir tu pedido estés donde estés.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 w-full mt-2">
+                    <div
+                        data-animate="fade-up"
+                        data-animate-delay="0.1"
+                        class="flex flex-col gap-2 w-full border-t-3 border-primary bg-background p-2"
+                    >
+                        <h3 class="text-xl font-bold text-center text-primary">
+                            Cobertura nacional
+                        </h3>
+                        <p class="font-extralight">
+                            Llegamos a Lambayeque, Piura, Trujillo y el resto
+                            del Perú mediante agencias de transporte de
+                            confianza.
+                        </p>
+                    </div>
+                    <div
+                        data-animate="fade-up"
+                        data-animate-delay="0.2"
+                        class="flex flex-col gap-2 w-full border-t-3 border-primary bg-background p-2"
+                    >
+                        <h3 class="text-xl font-bold text-center text-primary">
+                            Empaque seguro
+                        </h3>
+                        <p class="font-extralight">
+                            Cada pedido se embala cuidadosamente para que tus
+                            velas lleguen en perfecto estado.
+                        </p>
+                    </div>
+                </div>
+                <div data-animate="fade-up" class="flex flex-col gap-4 mt-5">
+                    <h2 class="text-2xl font-black text-primary max-w-md">
+                        Solicita tu cotización en el lugar que te encuentres
+                    </h2>
+                    <p class="font-extralight">
+                        Ponte en contacto con nosotros indicando tu ubicación y la cantidad de velas que necesitas. Te responderemos a la brevedad con una cotización a la medida para tu envío.
+                    </p>
+                    <button
+                        class="bg-primary text-white px-3 py-1.5 font-medium rounded-sm hover:bg-primary/80 transition-all w-fit mx-auto"
+                    >
+                        Contactanos
+                    </button>
+                </div>
+            </div>
+        </article>
+    </section>
+</div>

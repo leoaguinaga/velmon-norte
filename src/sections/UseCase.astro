@@ -3,25 +3,28 @@ import CruzMotupe from "../../public/usecase/cruz-motupe.webp";
 import Velaciones from "../../public/usecase/velaciones.webp";
 import Cautivo from "../../public/usecase/cautivo.webp";
 import Procesion from "../../public/usecase/procesion.webp";
-import Alumbrado from "../../public/usecase/alumbrado.webp";
+import Alumbrado from "../../public/usecase/alumbrado.png";
 import Cena from "../../public/usecase/cena.webp";
 import Bautizo from "../../public/usecase/bautizo.webp";
-import Santo from "../../public/usecase/santo.webp";
+import Santo from "../../public/usecase/santo.png";
 
 const images = [
     {
         src: CruzMotupe.src,
         alt: "Altar con velas encendidas en honor a la Santa Cruz de Motupe",
+        caption: "Santa Cruz de Motupe",
         class: "md:col-span-2 md:row-span-4",
     },
     {
         src: Santo.src,
         alt: "Santo",
+        caption: "Veneración a nuestros santos",
         class: "md:col-span-2 md:row-span-2 md:col-start-3",
     },
     {
         src: Alumbrado.src,
         alt: "Candelabro con velas encendidas en una iglesia",
+        caption: "Procesión de alumbrado",
         class: "md:col-span-2 md:row-span-2 md:col-start-5",
     },
     {
@@ -32,6 +35,7 @@ const images = [
     {
         src: Cautivo.src,
         alt: "Coro participando en una procesión nocturna con velas",
+        caption: "Señor Cautivo de Ayabaca",
         class: "md:col-span-2 md:row-span-2 md:col-start-4 md:row-start-3",
     },
     {
@@ -44,9 +48,9 @@ const images = [
 
 <section
     id="clientes"
-    class="w-full flex mb-25 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+    class="w-full flex my-15 md:my-20 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
 >
-    <h1 class="text-2xl md:text-4xl font-black text-primary text-center">
+    <h1 class="text-2xl md:text-4xl font-black text-primary">
         Acompañándote cuando más nos necesitas
     </h1>
 
@@ -66,6 +70,13 @@ const images = [
                         alt={image.alt}
                         class="absolute inset-0 h-full w-full object-cover"
                     />
+                    {image.caption && (
+                        <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-3">
+                            <p class="text-sm font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                                {image.caption}
+                            </p>
+                        </div>
+                    )}
                 </div>
             ))
         }
@@ -87,6 +98,13 @@ const images = [
                         alt={image.alt}
                         class="absolute inset-0 h-full w-full object-cover hover:scale-104 transition-transform duration-300"
                     />
+                    {image.caption && (
+                        <div class="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent p-4">
+                            <p class="text-base font-bold text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] md:text-lg">
+                                {image.caption}
+                            </p>
+                        </div>
+                    )}
                 </div>
             ))
         }
