@@ -10,18 +10,19 @@ const { question, answer, index = 0 } = Astro.props;
 
 <details
     data-animate="fade-up"
-    data-animate-delay={index * 0.08}
+    data-animate-tier="grid"
+    data-animate-delay={index * 0.05}
     class="faq-item group w-full border-b border-white/70 bg-primary overflow-hidden"
     itemscope
     itemprop="mainEntity"
     itemtype="https://schema.org/Question"
 >
     <summary
-        class="flex w-full list-none items-center justify-between gap-4 px-3 py-3 cursor-pointer font-medium text-white marker:content-none [&::-webkit-details-marker]:hidden"
+        class="flex w-full list-none items-center justify-between gap-4 px-3 py-3 cursor-pointer font-medium text-white marker:content-none [&::-webkit-details-marker]:hidden transition-transform duration-150 ease-out motion-safe:active:scale-[0.99]"
     >
         <p itemprop="name">{question}</p>
         <span
-            class="shrink-0 text-xl leading-none transition-transform duration-200 group-open:rotate-45"
+            class="shrink-0 text-xl leading-none transition-transform duration-200 ease-in-out group-open:rotate-45"
             aria-hidden="true"
         >
             +
@@ -70,7 +71,7 @@ const { question, answer, index = 0 } = Astro.props;
             animation?.cancel();
             animation = el.animate(
                 { height: [startHeight, endHeight] },
-                { duration: 250, easing: "ease-out" },
+                { duration: 250, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
             );
             animation.onfinish = () => onAnimationFinish(false);
             animation.oncancel = () => (isClosing = false);
@@ -90,7 +91,7 @@ const { question, answer, index = 0 } = Astro.props;
             animation?.cancel();
             animation = el.animate(
                 { height: [startHeight, endHeight] },
-                { duration: 250, easing: "ease-out" },
+                { duration: 250, easing: "cubic-bezier(0.23, 1, 0.32, 1)" },
             );
             animation.onfinish = () => onAnimationFinish(true);
             animation.oncancel = () => (isExpanding = false);

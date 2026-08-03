@@ -1,16 +1,12 @@
 ---
-import EtiquetaMediana from "../../public/etiquetas/mediana.webp";
-import EtiquetaGrande from "../../public/etiquetas/grande.webp";
-import EtiquetaEspecial from "../../public/etiquetas/especial.webp";
-
-import VelaMedianaAlt from "../../public/velas/mediano.png";
-import VelaGrandeAlt from "../../public/velas/grande.png";
-import VelaEspecialAlt from "../../public/velas/especial.png";
+import { Image } from "astro:assets";
+import VelaMedianaAlt from "../assets/velas/mediano.png";
+import VelaGrandeAlt from "../assets/velas/grande.png";
+import VelaEspecialAlt from "../assets/velas/especial.png";
 
 const products = [
     {
-        candle: VelaMedianaAlt.src,
-        label: EtiquetaMediana.src,
+        candle: VelaMedianaAlt,
         typeLabel: "Mediana",
         cantidad: "10 unidades por paquete",
         empaque: "14 cm x 7,5 cm",
@@ -19,8 +15,7 @@ const products = [
         blobColor: "bg-red-300/25",
     },
     {
-        candle: VelaGrandeAlt.src,
-        label: EtiquetaGrande.src,
+        candle: VelaGrandeAlt,
         typeLabel: "Grande",
         cantidad: "10 unidades por paquete",
         empaque: "15 cm x 9 cm",
@@ -29,8 +24,7 @@ const products = [
         blobColor: "bg-blue-300/25",
     },
     {
-        candle: VelaEspecialAlt.src,
-        label: EtiquetaEspecial.src,
+        candle: VelaEspecialAlt,
         typeLabel: "Especial",
         cantidad: "10 unidades por paquete",
         empaque: "15,3 cm x 10,1 cm",
@@ -43,7 +37,7 @@ const products = [
 
 <section
     id="catalogo"
-    class="w-full flex mt-5 mb-15 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+    class="w-full flex my-15 md:my-20 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
 >
     <h1 class="text-3xl md:text-4xl font-black text-primary">
         Catálogo reconocido en el Norte
@@ -57,11 +51,12 @@ const products = [
             products.map((product, index) => (
                 <div
                     data-animate="fade-up"
-                    data-animate-delay={index * 0.1}
+                    data-animate-tier="grid"
+                    data-animate-delay={index * 0.05}
                     class="flex w-[80%] shrink-0 snap-center flex-col border border-black/30"
                 >
                     <div class="flex min-h-70 w-full items-center justify-center">
-                        <img
+                        <Image
                             src={product.candle}
                             alt=""
                             class="object-contain"
@@ -80,7 +75,7 @@ const products = [
                         <ul class="mt-1 flex w-full justify-end">
                             <button
                                 data-cotizar={product.type}
-                                class="w-fit rounded-sm bg-primary px-2.5 py-1 font-medium text-white"
+                                class="w-fit rounded-sm bg-primary px-2.5 py-1 font-medium text-white transition-[background-color,transform] duration-150 ease-out hover:bg-primary/80 motion-safe:active:scale-[0.97]"
                             >
                                 Cotízalas
                             </button>
@@ -97,11 +92,12 @@ const products = [
             products.map((product, index) => (
                 <div
                     data-animate="fade-up"
-                    data-animate-delay={index * 0.15}
+                    data-animate-tier="grid"
+                    data-animate-delay={index * 0.05}
                     class="flex w-full flex-col border border-black/30"
                 >
                     <div class="flex h-95 w-full items-center justify-end bg-background relative overflow-hidden group">
-                        <img
+                        <Image
                             src={product.candle}
                             alt=""
                             class="object-contain transition-transform duration-300 scale-90 group-hover:scale-95 z-2"
@@ -111,24 +107,20 @@ const products = [
                         />
                         <div class="absolute bottom-6 left-1/2 z-2 h-3 w-2/5 -translate-x-1/2 rounded-full bg-black/20 blur-md md:bottom-8 md:h-4" />
                     </div>
-                    {/* <img src={product.label} alt="" class="w-full" /> */}
                     <div class="w-full p-4 bg-white mt-auto">
                         <h2 class="bg-white text-xl font-black text-primary mb-2 text-left">
                             {product.typeLabel}
                         </h2>
                         <ul>
-                            <strong>Cantidad:</strong> {product.cantidad}
+                            <strong>Presentación:</strong> Caja de 30 paquetes.
                         </ul>
                         <ul>
-                            <strong>Empaque:</strong> {product.empaque}
-                        </ul>
-                        <ul>
-                            <strong>Vela sola:</strong> {product.velaSola}
+                            <strong>Paquete:</strong> Contiene 10 velas.
                         </ul>
                         <ul class="mt-1 flex w-full justify-end">
                             <button
                                 data-cotizar={product.type}
-                                class="w-fit rounded-sm bg-primary px-2.5 py-1 font-medium text-white"
+                                class="w-fit rounded-sm bg-primary px-2.5 py-1 font-medium text-white transition-[background-color,transform] duration-150 ease-out hover:bg-primary/80 motion-safe:active:scale-[0.97]"
                             >
                                 Cotízalas
                             </button>

@@ -96,20 +96,46 @@ export const POST: APIRoute = async ({ request }) => {
     return jsonResponse({ ok: true });
 };
 
+function cleanEnvValue(value: string | undefined): string {
+    if (!value) return "";
+    let trimmed = value.trim();
+    if (
+        (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+        (trimmed.startsWith("'") && trimmed.endsWith("'"))
+    ) {
+        trimmed = trimmed.slice(1, -1);
+    }
+    return trimmed;
+}
+
 let transporter: nodemailer.Transporter | null = null;
 
 function getTransporter() {
     if (transporter) return transporter;
 
-    transporter = nodemailer.createTransport({
-        host: import.meta.env.SMTP_HOST || "smtp.gmail.com",
-        port: Number(import.meta.env.SMTP_PORT) || 465,
-        secure: true,
-        auth: {
-            user: import.meta.env.SMTP_USER,
-            pass: import.meta.env.SMTP_APP_PASSWORD,
-        },
-    });
+    const service = cleanEnvValue(import.meta.env.EMAIL_SERVICE);
+    const user = cleanEnvValue(import.meta.env.EMAIL_USER || import.meta.env.SMTP_USER);
+    const pass = cleanEnvValue(
+        import.meta.env.EMAIL_PASSWORD || import.meta.env.SMTP_APP_PASSWORD
+    ).replace(/\s+/g, "");
+
+    if (
+        service === "gmail" ||
+        (!import.meta.env.SMTP_HOST && user.endsWith("@gmail.com"))
+    ) {
+        transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: { user, pass },
+        });
+    } else {
+        transporter = nodemailer.createTransport({
+            host: cleanEnvValue(import.meta.env.SMTP_HOST) || "smtp.gmail.com",
+            port: Number(import.meta.env.SMTP_PORT) || 465,
+            secure: true,
+            auth: { user, pass },
+        });
+    }
+
     return transporter;
 }
 
@@ -120,11 +146,23 @@ async function sendNotificationEmail({
     candleType,
     message,
 }: QuotePayload) {
-    const candleLabel = CANDLE_LABELS[candleType];
-    const to = import.meta.env.NOTIFY_EMAIL_TO || import.meta.env.SMTP_USER;
+    const candleLabel = CANDLE_LABELS[candleType] || candleType;
+    const to = cleanEnvValue(
+        import.meta.env.EMAIL_END_ADDRESS ||
+        import.meta.env.NOTIFY_EMAIL_TO ||
+        import.meta.env.EMAIL_USER ||
+        import.meta.env.SMTP_USER
+    );
+
+    const fromName = cleanEnvValue(import.meta.env.EMAIL_FROM_NAME) || "AyM Corporación de Negocios";
+    const fromAddress = cleanEnvValue(
+        import.meta.env.EMAIL_FROM_ADDRESS ||
+        import.meta.env.EMAIL_USER ||
+        import.meta.env.SMTP_USER
+    );
 
     await getTransporter().sendMail({
-        from: `"Cotizaciones Velmon" <${import.meta.env.SMTP_USER}>`,
+        from: `"${fromName}" <${fromAddress}>`,
         to,
         replyTo: email,
         subject: `Nueva cotización de ${name} (${candleLabel})`,
@@ -147,20 +185,32 @@ async function logLeadToSheet({
     candleType,
     message,
 }: QuotePayload) {
-    const url = import.meta.env.APPS_SCRIPT_URL;
+    const baseUrl = import.meta.env.APPS_SCRIPT_URL;
     // Not configured yet — safe no-op until the Apps Script Web App is deployed.
-    if (!url) return;
+    if (!baseUrl) return;
+
+    const token = import.meta.env.APPS_SCRIPT_TOKEN;
+    let url = baseUrl;
+    if (token) {
+        const separator = baseUrl.includes("?") ? "&" : "?";
+        url = `${baseUrl}${separator}token=${encodeURIComponent(token)}`;
+    }
+
+    const candleLabel = CANDLE_LABELS[candleType] || candleType;
 
     await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+            token: token || undefined,
+            createdAt: new Date().toISOString(),
+            receivedAt: new Date().toISOString(),
             name,
             email,
-            phone,
-            candleType: CANDLE_LABELS[candleType],
-            message,
-            receivedAt: new Date().toISOString(),
+            phone: phone || "",
+            service: candleLabel,
+            candleType: candleLabel,
+            message: message || "",
         }),
     });
 }

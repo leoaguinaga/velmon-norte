@@ -1,5 +1,6 @@
 ---
-import LogoHorizontal from "../../public/velmon-horizontal.webp";
+import { Image } from "astro:assets";
+import LogoHorizontal from "../assets/velmon-horizontal.webp";
 ---
 
 <section
@@ -8,8 +9,8 @@ import LogoHorizontal from "../../public/velmon-horizontal.webp";
     <footer
         class="flex flex-col items-center max-w-7xl mx-auto w-full px-4 gap-4 text-center"
     >
-        <img
-            src={LogoHorizontal.src}
+        <Image
+            src={LogoHorizontal}
             alt="Velas Montenegro"
             class="h-14 sm:h-20 object-contain brightness-0 invert"
         />

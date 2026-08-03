@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
     CANDLE_TYPE_EVENT,
     CANDLE_TYPE_STORAGE_KEY,
@@ -50,9 +50,31 @@ export default function QuoteForm() {
         "idle",
     );
     const [statusMessage, setStatusMessage] = useState("");
+    const candleRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
     function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
         setForm((prev) => ({ ...prev, [key]: value }));
+    }
+
+    function focusAndSelectCandle(index: number) {
+        const option = CANDLE_OPTIONS[index];
+        updateField("candleType", option.value);
+        candleRefs.current[index]?.focus();
+    }
+
+    function handleCandleKeyDown(
+        event: React.KeyboardEvent<HTMLButtonElement>,
+        index: number,
+    ) {
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            event.preventDefault();
+            focusAndSelectCandle((index + 1) % CANDLE_OPTIONS.length);
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+            event.preventDefault();
+            focusAndSelectCandle(
+                (index - 1 + CANDLE_OPTIONS.length) % CANDLE_OPTIONS.length,
+            );
+        }
     }
 
     function applyCandleType(value: string | null | undefined) {
@@ -204,18 +226,28 @@ export default function QuoteForm() {
                     }
                     className="flex flex-col sm:flex-row justify-center items-stretch gap-3"
                 >
-                    {CANDLE_OPTIONS.map((option) => {
+                    {CANDLE_OPTIONS.map((option, index) => {
                         const selected = form.candleType === option.value;
+                        const isTabbable = form.candleType
+                            ? selected
+                            : index === 0;
                         return (
                             <button
                                 key={option.value}
+                                ref={(el) => {
+                                    candleRefs.current[index] = el;
+                                }}
                                 type="button"
                                 role="radio"
                                 aria-checked={selected}
+                                tabIndex={isTabbable ? 0 : -1}
                                 onClick={() =>
                                     updateField("candleType", option.value)
                                 }
-                                className={`px-3 py-2 font-medium rounded-sm transition-all w-full border ${
+                                onKeyDown={(e) =>
+                                    handleCandleKeyDown(e, index)
+                                }
+                                className={`px-3 py-2 font-medium rounded-sm transition-[background-color,color,transform] duration-150 ease-out motion-safe:active:scale-[0.97] w-full border ${
                                     selected
                                         ? "bg-primary text-white border-primary"
                                         : "bg-white text-primary border-primary hover:bg-gray-200"
@@ -249,7 +281,7 @@ export default function QuoteForm() {
             <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-primary text-white p-2 md:col-span-2 font-medium rounded-sm hover:bg-primary/80 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                className="bg-primary text-white p-2 md:col-span-2 font-medium rounded-sm transition-[background-color,transform] duration-150 ease-out hover:bg-primary/80 motion-safe:active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100"
             >
                 {isLoading ? "Enviando..." : "Enviar"}
             </button>
@@ -257,7 +289,7 @@ export default function QuoteForm() {
             {status !== "idle" && statusMessage && (
                 <p
                     role="status"
-                    className={`md:col-span-2 text-center font-medium ${
+                    className={`animate-fade-up md:col-span-2 text-center font-medium ${
                         status === "success" ? "text-green-700" : "text-red-600"
                     }`}
                 >

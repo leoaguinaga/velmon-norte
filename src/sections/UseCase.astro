@@ -1,45 +1,44 @@
 ---
-import CruzMotupe from "../../public/usecase/cruz-motupe.webp";
-import Velaciones from "../../public/usecase/velaciones.webp";
-import Cautivo from "../../public/usecase/cautivo.webp";
-import Procesion from "../../public/usecase/procesion.webp";
-import Alumbrado from "../../public/usecase/alumbrado.png";
-import Cena from "../../public/usecase/cena.webp";
-import Bautizo from "../../public/usecase/bautizo.webp";
-import Santo from "../../public/usecase/santo.png";
+import { Image } from "astro:assets";
+import CruzMotupe from "../assets/usecase/cruz-motupe.webp";
+import Cautivo from "../assets/usecase/cautivo.webp";
+import Procesion from "../assets/usecase/procesion.webp";
+import Alumbrado from "../assets/usecase/alumbrado.png";
+import Bautizo from "../assets/usecase/bautizo.webp";
+import Santo from "../assets/usecase/santo.png";
 
 const images = [
     {
-        src: CruzMotupe.src,
+        src: CruzMotupe,
         alt: "Altar con velas encendidas en honor a la Santa Cruz de Motupe",
         caption: "Santa Cruz de Motupe",
         class: "md:col-span-2 md:row-span-4",
     },
     {
-        src: Santo.src,
+        src: Santo,
         alt: "Santo",
         caption: "Veneración a nuestros santos",
         class: "md:col-span-2 md:row-span-2 md:col-start-3",
     },
     {
-        src: Alumbrado.src,
+        src: Alumbrado,
         alt: "Candelabro con velas encendidas en una iglesia",
         caption: "Procesión de alumbrado",
         class: "md:col-span-2 md:row-span-2 md:col-start-5",
     },
     {
-        src: Procesion.src,
+        src: Procesion,
         alt: "Mesa servida con candelabro de velas encendidas",
         class: "md:row-span-2 md:col-start-3 md:row-start-3",
     },
     {
-        src: Cautivo.src,
+        src: Cautivo,
         alt: "Coro participando en una procesión nocturna con velas",
         caption: "Señor Cautivo de Ayabaca",
         class: "md:col-span-2 md:row-span-2 md:col-start-4 md:row-start-3",
     },
     {
-        src: Bautizo.src,
+        src: Bautizo,
         alt: "Niños sosteniendo velas encendidas durante una ceremonia",
         class: "md:row-span-2 md:col-start-6 md:row-start-3",
     },
@@ -62,10 +61,11 @@ const images = [
             images.map((image, index) => (
                 <div
                     data-animate="zoom-in"
-                    data-animate-delay={index * 0.08}
+                    data-animate-tier="grid"
+                    data-animate-delay={index * 0.05}
                     class="relative aspect-4/5 w-[80%] shrink-0 snap-center overflow-hidden"
                 >
-                    <img
+                    <Image
                         src={image.src}
                         alt={image.alt}
                         class="absolute inset-0 h-full w-full object-cover"
@@ -90,10 +90,11 @@ const images = [
             images.map((image, index) => (
                 <div
                     data-animate="zoom-in"
-                    data-animate-delay={index * 0.08}
+                    data-animate-tier="grid"
+                    data-animate-delay={index * 0.05}
                     class={`relative overflow-hidden ${image.class}`}
                 >
-                    <img
+                    <Image
                         src={image.src}
                         alt={image.alt}
                         class="absolute inset-0 h-full w-full object-cover hover:scale-104 transition-transform duration-300"
@@ -114,10 +115,11 @@ const images = [
         <h2 class="text-2xl font-black text-primary text-center">
             ¿Quieres probar nuestro productos?
         </h2>
-        <button
-            class="bg-primary text-white px-3 py-1.5 font-medium rounded-sm hover:bg-primary/80 transition-all w-fit mx-auto"
+        <a
+            href="#cotizacion"
+            class="bg-primary text-white px-3 py-1.5 font-medium rounded-sm transition-[background-color,transform] duration-150 ease-out hover:bg-primary/80 motion-safe:active:scale-[0.97] w-fit mx-auto"
         >
             Solicita una cotización
-        </button>
+        </a>
     </div>
 </section>
