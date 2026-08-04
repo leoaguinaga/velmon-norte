@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import {
     CANDLE_TYPE_EVENT,
     CANDLE_TYPE_STORAGE_KEY,
@@ -49,7 +50,6 @@ export default function QuoteForm() {
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
         "idle",
     );
-    const [statusMessage, setStatusMessage] = useState("");
     const candleRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
     function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
@@ -105,7 +105,6 @@ export default function QuoteForm() {
         if (Object.keys(validationErrors).length > 0) return;
 
         setStatus("loading");
-        setStatusMessage("");
 
         try {
             const response = await fetch("/api/quote", {
@@ -117,21 +116,21 @@ export default function QuoteForm() {
 
             if (!response.ok || !data.ok) {
                 setStatus("error");
-                setStatusMessage(
+                toast.error(
                     data.error ||
-                        "No se pudo enviar tu solicitud. Intenta nuevamente.",
+                    "No se pudo enviar tu solicitud. Intenta nuevamente.",
                 );
                 return;
             }
 
             setStatus("success");
-            setStatusMessage(
+            toast.success(
                 "¡Listo! Recibimos tu solicitud y te contactaremos pronto.",
             );
             setForm(INITIAL_STATE);
         } catch {
             setStatus("error");
-            setStatusMessage(
+            toast.error(
                 "No se pudo enviar tu solicitud. Revisa tu conexión e intenta de nuevo.",
             );
         }
@@ -247,11 +246,10 @@ export default function QuoteForm() {
                                 onKeyDown={(e) =>
                                     handleCandleKeyDown(e, index)
                                 }
-                                className={`px-3 py-2 font-medium rounded-sm transition-[background-color,color,transform] duration-150 ease-out motion-safe:active:scale-[0.97] w-full border ${
-                                    selected
-                                        ? "bg-primary text-white border-primary"
-                                        : "bg-white text-primary border-primary hover:bg-gray-200"
-                                }`}
+                                className={`px-3 py-2 font-medium rounded-sm transition-[background-color,color,transform] duration-150 ease-out motion-safe:active:scale-[0.97] w-full border ${selected
+                                    ? "bg-primary text-white border-primary"
+                                    : "bg-white text-primary border-primary hover:bg-gray-200"
+                                    }`}
                             >
                                 {option.label}
                             </button>
@@ -272,7 +270,7 @@ export default function QuoteForm() {
                     name="message"
                     placeholder="Cuéntanos cantidad, plazos u otros detalles de tu pedido"
                     rows={4}
-                    className="border-b outline-none border-primary p-2"
+                    className="border-b outline-none border-primary p-2 min-h-30 max-h-40"
                     value={form.message}
                     onChange={(e) => updateField("message", e.target.value)}
                 />
@@ -285,17 +283,6 @@ export default function QuoteForm() {
             >
                 {isLoading ? "Enviando..." : "Enviar"}
             </button>
-
-            {status !== "idle" && statusMessage && (
-                <p
-                    role="status"
-                    className={`animate-fade-up md:col-span-2 text-center font-medium ${
-                        status === "success" ? "text-green-700" : "text-red-600"
-                    }`}
-                >
-                    {statusMessage}
-                </p>
-            )}
         </form>
     );
 }

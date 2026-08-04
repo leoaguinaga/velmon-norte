@@ -1,29 +1,37 @@
 ---
-import { Image } from "astro:assets";
-import Peru from "../assets/peru.png";
+import mapaPeru from "../assets/mapa-peru.mp4";
 ---
 
 <div class="w-full bg-white">
     <section
         id="envios"
-        class="w-full flex my-15 md:my-20 flex-col gap-10 max-w-7xl mx-auto px-4 scroll-my-20"
+        class="w-full flex my-15 md:my-25 flex-col max-w-7xl mx-auto px-4 scroll-my-20 py-5"
     >
-        <h1 class="text-2xl md:text-4xl font-black text-primary text-center">
+        <h1
+            class="text-2xl md:text-4xl font-black text-primary text-center mt-10"
+        >
             Realizamos envíos a todo el Perú
         </h1>
         <article class="grid grid-cols-1 items-center md:gap-10 md:grid-cols-2">
             <div
+                id="envios-video-trigger"
                 data-animate="fade-right"
+                data-animate-start="top 75%"
                 class="group relative flex items-center justify-center overflow-hidden rounded-sm p-8 text-blue-300 md:p-12 md:pb-10"
             >
-                <Image
-                    src={Peru}
-                    alt="Mapa de cobertura de envíos a nivel nacional"
-                    class="relative z-10 w-full max-w-70 object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:max-w-80 mb-10"
-                />
+                <video
+                    id="envios-mapa-video"
+                    src={mapaPeru}
+                    width="1080"
+                    height="1440"
+                    aria-label="Mapa de cobertura de envíos a nivel nacional"
+                    class="relative z-10 w-full h-auto max-w-70 object-contain sm:max-w-80 mb-10"
+                    muted
+                    playsinline
+                    preload="auto"></video>
             </div>
             <div class="w-full min-w-0 flex flex-col gap-5">
-                <p data-animate="fade-up" class="font-light text-lg">
+                <p data-animate="fade-up" data-animate-start="top 75%" class="font-light text-lg">
                     Coordinamos el envío de tus velas a cualquier ciudad del
                     país a través de las principales agencias de transporte,
                     para que puedas recibir tu pedido estés donde estés.
@@ -33,6 +41,7 @@ import Peru from "../assets/peru.png";
                         data-animate="fade-up"
                         data-animate-tier="grid"
                         data-animate-delay="0"
+                        data-animate-start="top 75%"
                         class="flex flex-col gap-2 w-full border-t-3 border-primary bg-background p-2"
                     >
                         <h3 class="text-xl font-bold text-center text-primary">
@@ -48,6 +57,7 @@ import Peru from "../assets/peru.png";
                         data-animate="fade-up"
                         data-animate-tier="grid"
                         data-animate-delay="0.05"
+                        data-animate-start="top 75%"
                         class="flex flex-col gap-2 w-full border-t-3 border-primary bg-background p-2"
                     >
                         <h3 class="text-xl font-bold text-center text-primary">
@@ -59,12 +69,15 @@ import Peru from "../assets/peru.png";
                         </p>
                     </div>
                 </div>
-                <div data-animate="fade-up" class="flex flex-col gap-4 mt-5">
+                <div data-animate="fade-up" data-animate-start="top 75%" class="flex flex-col gap-4 mt-5">
                     <h2 class="text-2xl font-black text-primary max-w-md">
                         Solicita tu cotización en el lugar que te encuentres
                     </h2>
                     <p class="font-extralight">
-                        Ponte en contacto con nosotros indicando tu ubicación y la cantidad de velas que necesitas. Te responderemos a la brevedad con una cotización a la medida para tu envío.
+                        Ponte en contacto con nosotros indicando tu ubicación y
+                        la cantidad de velas que necesitas. Te responderemos a
+                        la brevedad con una cotización a la medida para tu
+                        envío.
                     </p>
                     <a
                         href="#cotizacion"
@@ -77,3 +90,8 @@ import Peru from "../assets/peru.png";
         </article>
     </section>
 </div>
+
+<script>
+    import { initVideoScrub } from "../lib/videoScroll";
+    initVideoScrub("#envios-video-trigger", "#envios-mapa-video");
+</script>

@@ -10,6 +10,7 @@ import UseCase from "../sections/UseCase.astro";
 import FAQ from "../sections/FAQ.astro";
 import Quote from "../sections/Quote.astro";
 import Comparative from "../sections/Comparative.astro";
+import Toaster from "../components/Toaster";
 ---
 
 <Layout>
@@ -21,4 +22,5 @@ import Comparative from "../sections/Comparative.astro";
     <Comparative />
     <FAQ />
     <Quote />
+    <Toaster client:load />
 </Layout>

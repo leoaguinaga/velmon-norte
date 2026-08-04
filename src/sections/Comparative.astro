@@ -15,11 +15,11 @@ import EmpaqueEspecial from "../assets/empaques/especial.webp";
     <div class="flex h-full w-full flex-col gap-12 md:gap-16">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
             <div
-                data-animate="fade-right"
                 class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-purple-300 md:order-none md:p-12"
             >
                 <div
-                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-purple-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                    data-rotate-on-view
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-purple-300/25 rounded-[90px]"
                 >
                 </div>
                 <svg
@@ -87,7 +87,6 @@ import EmpaqueEspecial from "../assets/empaques/especial.webp";
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
             <div
-                data-animate="fade-right"
                 class="order-2 flex flex-col gap-2 justify-center text-center md:order-none md:text-left"
             >
                 <div
@@ -121,7 +120,8 @@ import EmpaqueEspecial from "../assets/empaques/especial.webp";
                 class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-blue-300 ring-2 ring-primary/25 transition-all duration-300 hover:ring-primary/50 md:order-none md:p-12"
             >
                 <div
-                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-blue-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                    data-rotate-on-view
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-blue-300/25 rounded-[90px]"
                 >
                 </div>
                 <svg
@@ -169,11 +169,11 @@ import EmpaqueEspecial from "../assets/empaques/especial.webp";
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-15">
             <div
-                data-animate="fade-right"
                 class="group order-1 relative flex items-center justify-center overflow-hidden rounded-sm bg-background p-8 text-red-300 md:order-none md:p-12"
             >
                 <div
-                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-red-300/25 rounded-[90px] transition-transform duration-500 ease-out group-hover:rotate-[20deg]"
+                    data-rotate-on-view
+                    class="absolute -top-16 -left-16 z-0 h-[140%] w-2/3 rotate-12 bg-red-300/25 rounded-[90px]"
                 >
                 </div>
                 <svg
@@ -241,3 +241,8 @@ import EmpaqueEspecial from "../assets/empaques/especial.webp";
         </div>
     </div>
 </section>
+
+<script>
+    import { initRotateOnView } from "../lib/rotateOnView";
+    initRotateOnView("[data-rotate-on-view]");
+</script>

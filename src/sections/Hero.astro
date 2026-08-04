@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
-import HeroImage from "../assets/hero.webp";
+import HeroImage from "../assets/hero.png";
 ---
 
 <section
-    class="w-full flex items-center min-h-[95svh] my-0 md:min-h-0 md:my-20 bg-gray-100"
+    class="w-full flex items-center min-h-[95svh] my-0 md:min-h-0 md:my-15 py-15 bg-gray-100"
 >
     <article
-        class="flex flex-col md:flex-row items-center w-full max-w-7xl mx-auto justify-center gap-8 md:gap-6 lg:gap-12 px-4 py-10 md:py-20"
+        class="flex flex-col md:flex-row items-center w-full max-w-7xl mx-auto gap-8 md:gap-6 justify-between lg:gap-12 px-4 py-10 md:py-20"
     >
         <div
             class="flex w-full flex-col items-center gap-2 text-center md:max-w-lg md:items-start md:text-left lg:max-w-xl"
@@ -50,10 +50,10 @@ import HeroImage from "../assets/hero.webp";
             data-animate-delay="0.06"
             class="flex w-full shrink-0 justify-center md:w-auto"
         >
-            <Image
-                src={HeroImage}
+            <img
+                src={HeroImage.src}
                 alt="Velas Montenegro"
-                class="h-56 w-auto object-contain sm:h-72 md:h-96 lg:h-[480px]"
+                class="h-56 w-auto object-contain sm:h-72 md:h-96 lg:h-125"
             />
         </div>
     </article>
