@@ -20,13 +20,24 @@ export function initVideoScrub(triggerSelector: string, videoSelector: string) {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // iOS Safari never paints a <video> frame until playback has actually
-    // started at least once, even though metadata/dimensions are already
-    // available. Priming with an immediate play+pause forces that first
-    // frame to render so the scroll-scrub isn't scrubbing a blank canvas.
-    video.play()
-        .then(() => video.pause())
-        .catch(() => {});
+    // Safari (desktop and iOS) never paints a <video> frame until playback
+    // has actually started at least once, even though metadata/dimensions
+    // are already available. Priming with an immediate play+pause forces
+    // that first frame to render so the scroll-scrub isn't scrubbing a
+    // blank canvas. This has to wait for actual decodable data (canplay) —
+    // calling play() while readyState is still 0 gets silently dropped by
+    // Safari instead of queued, so the prime never happens.
+    const primeFirstFrame = () => {
+        video.play()
+            .then(() => video.pause())
+            .catch(() => {});
+    };
+
+    if (video.readyState >= 3) {
+        primeFirstFrame();
+    } else {
+        video.addEventListener("canplay", primeFirstFrame, { once: true });
+    }
 
     const setup = () => {
         const duration = video.duration || 4;
