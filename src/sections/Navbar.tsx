@@ -47,7 +47,11 @@ export default function Navbar() {
                 style={{ gridTemplateRows: open ? '1fr' : '0fr' }}
                 inert={!open}
             >
-                <nav className='flex flex-col gap-1 overflow-hidden px-4 py-3 bg-white border-t border-primary/10 font-medium min-h-0'>
+                <nav
+                    className={`flex flex-col gap-1 overflow-hidden px-4 bg-white border-primary/10 font-medium min-h-0 transition-[padding,border-width] duration-300 ease-out ${
+                        open ? 'py-3 border-t' : 'py-0 border-t-0'
+                    }`}
+                >
                     {links.map((link) => (
                         <a
                             key={link.label}

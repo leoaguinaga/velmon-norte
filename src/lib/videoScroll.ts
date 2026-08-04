@@ -20,6 +20,14 @@ export function initVideoScrub(triggerSelector: string, videoSelector: string) {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // iOS Safari never paints a <video> frame until playback has actually
+    // started at least once, even though metadata/dimensions are already
+    // available. Priming with an immediate play+pause forces that first
+    // frame to render so the scroll-scrub isn't scrubbing a blank canvas.
+    video.play()
+        .then(() => video.pause())
+        .catch(() => {});
+
     const setup = () => {
         const duration = video.duration || 4;
 
