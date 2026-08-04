@@ -1,6 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import mapaPeru from "../assets/mapa-peru.mp4";
-import mapaPeruPoster from "../assets/peru.png";
+import peruPoster from "../assets/peru.png";
 ---
 
 <div class="w-full bg-white">
@@ -19,17 +20,21 @@ import mapaPeruPoster from "../assets/peru.png";
                 data-animate-start="top 75%"
                 class="group relative flex items-center justify-center overflow-hidden rounded-sm p-8 text-blue-300 md:p-12 md:pb-10"
             >
+                <Image
+                    src={peruPoster}
+                    alt="Mapa de cobertura de envíos a nivel nacional"
+                    class="md:hidden relative z-10 w-full h-auto max-w-70 object-contain sm:max-w-80 mb-10"
+                />
                 <video
                     id="envios-mapa-video"
                     src={mapaPeru}
-                    poster={mapaPeruPoster.src}
                     width="1080"
                     height="1440"
                     aria-label="Mapa de cobertura de envíos a nivel nacional"
-                    class="relative z-10 w-full h-auto max-w-70 object-contain sm:max-w-80 mb-10"
+                    class="hidden md:block relative z-10 w-full h-auto max-w-70 object-contain sm:max-w-80 mb-10"
                     muted
                     playsinline
-                    preload="auto"></video>
+                    preload="none"></video>
             </div>
             <div class="w-full min-w-0 flex flex-col gap-5">
                 <p
@@ -102,5 +107,10 @@ import mapaPeruPoster from "../assets/peru.png";
 
 <script>
     import { initVideoScrub } from "../lib/videoScroll";
-    initVideoScrub("#envios-video-trigger", "#envios-mapa-video");
+
+    // Below md the video is replaced entirely by a static poster image (see
+    // markup above), so skip loading/scrubbing the mp4 there entirely.
+    if (window.matchMedia("(min-width: 768px)").matches) {
+        initVideoScrub("#envios-video-trigger", "#envios-mapa-video");
+    }
 </script>

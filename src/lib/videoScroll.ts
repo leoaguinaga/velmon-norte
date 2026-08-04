@@ -20,6 +20,13 @@ export function initVideoScrub(triggerSelector: string, videoSelector: string) {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // The <video> ships with preload="none" so mobile (which never calls
+    // this function) doesn't fetch it. Callers of this function do want it
+    // loaded, so kick that off explicitly instead of waiting on a fetch
+    // that preload="none" will otherwise never start.
+    video.preload = "auto";
+    video.load();
+
     // Safari (desktop and iOS) never paints a <video> frame until playback
     // has actually started at least once, even though metadata/dimensions
     // are already available. Priming with an immediate play+pause forces
